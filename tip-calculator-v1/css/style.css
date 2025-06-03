@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.calculator-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input[type="number"],
+.input-group button {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.input-group input[type="number"] {
+    box-sizing: border-box;
+}
+
+.tip-percent-btn {
+    background-color: #e7e7e7;
+    color: #333;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-right: 5px;
+    width: auto; /* Override width for these buttons */
+    padding: 10px 15px;
+}
+
+.tip-percent-btn:hover {
+    background-color: #d4d4d4;
+}
+
+.tip-percent-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+#customTipPercentage {
+    width: calc(30% - 22px); /* Smaller width for custom tip input */
+    margin-left: 5px;
+}
+
+
+.output-group {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.output-group p {
+    margin: 8px 0;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.output-group p span {
+    font-weight: bold;
+}
+
+.theme-switcher {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#themeToggle {
+    padding: 10px 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+#themeToggle:hover {
+    background-color: #333;
+}
+
+/* Dark Mode Styles - will be toggled by JS */
+body.dark-mode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .calculator-container {
+    background-color: #162447;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode h1 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .input-group label {
+    color: #e0e0e0;
+}
+
+body.dark-mode .input-group input[type="number"],
+body.dark-mode .input-group button {
+    background-color: #1f4068;
+    color: #e0e0e0;
+    border-color: #1b263b;
+}
+
+body.dark-mode .tip-percent-btn {
+    background-color: #1b263b;
+    color: #e0e0e0;
+    border-color: #162447;
+}
+
+body.dark-mode .tip-percent-btn:hover {
+    background-color: #1f4068;
+}
+
+body.dark-mode .tip-percent-btn.active {
+    background-color: #2d6cdf;
+    color: white;
+    border-color: #2d6cdf;
+}
+
+body.dark-mode .output-group {
+    border-top: 1px solid #1f4068;
+}
+
+body.dark-mode #themeToggle {
+    background-color: #e0e0e0;
+    color: #1a1a2e;
+}
+
+body.dark-mode #themeToggle:hover {
+    background-color: #f4f4f9;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .calculator-container {
+        margin: 15px;
+        padding: 20px;
+        width: auto; /* Allow it to take available width */
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .input-group input[type="number"],
+    .input-group button,
+    #customTipPercentage {
+        font-size: 0.95em; /* Slightly smaller font for inputs on small screens */
+        width: 100%; /* Make inputs and buttons take full width available */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        margin-bottom: 10px; /* Add some space below each full-width element */
+    }
+
+    .tip-percent-btn {
+        padding: 10px; /* Adjust padding for better fit */
+        margin-right: 0; /* Remove right margin as they are full width */
+    }
+    
+    #customTipPercentage {
+        margin-left: 0; /* Remove left margin as it's full width */
+    }
+
+    .input-group label {
+        font-size: 0.9em;
+    }
+
+    .output-group p {
+        font-size: 1em;
+    }
+
+    #themeToggle {
+        padding: 12px; /* Make toggle button a bit larger for touch */
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.6em;
+    }
+    .tip-percent-btn {
+        display: block; /* Stack tip buttons vertically */
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    .input-group {
+        margin-bottom:10px;
+    }
+}
