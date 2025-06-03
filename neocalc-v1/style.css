@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg-color: #f0f0f0;
+    --calculator-bg: #e0e0e0;
+    --display-bg: #dde1e7;
+    --key-bg: #d1d9e6;
+    --key-bg-hover: #c8d0db;
+    --key-operator-bg: #f0a060;
+    --key-operator-bg-hover: #e09050;
+    --key-special-bg: #b3c1d1; /* For AC, DEL, +/- etc. if needed */
+    --key-special-bg-hover: #a3b1c1;
+    --text-color: #3a3a3a;
+    --display-text-color: #2c2c2c;
+    --history-text-color: #5a5a5a;
+    --border-radius: 12px;
+    --box-shadow: 5px 5px 10px #c1c9d2, -5px -5px 10px #ffffff;
+    --inset-box-shadow: inset 2px 2px 5px #c1c9d2, inset -2px -2px 5px #ffffff;
+
+    /* Specific for theme toggle button */
+    --toggle-btn-bg: var(--key-bg);
+    --toggle-btn-text: var(--text-color);
+    --toggle-btn-border: #b3c1d1;
+
+    /* For history panel scrollbar */
+    --scrollbar-track-bg: var(--key-bg);
+    --scrollbar-thumb-bg: #888;
+    --scrollbar-thumb-hover-bg: #555;
+
+    /* History item separator */
+    --history-item-border: #ccc;
+}
+
+/* Dark Theme Variables */
+.dark-theme {
+    --bg-color: #2c3e50; /* Dark blue-grey */
+    --calculator-bg: #34495e; /* Slightly lighter dark blue-grey */
+    --display-bg: #2c3a47; /* Even darker for display */
+    --key-bg: #4a6572; /* Darker key background */
+    --key-bg-hover: #5e7a88;
+    --key-operator-bg: #e67e22; /* Orange for operators */
+    --key-operator-bg-hover: #d35400;
+    --key-special-bg: #526c7a;
+    --key-special-bg-hover: #627c8a;
+    --text-color: #ecf0f1; /* Light text */
+    --display-text-color: #ffffff; /* White display text */
+    --history-text-color: #bdc3c7; /* Lighter grey for history text */
+    
+    --box-shadow: 5px 5px 10px #252525, -5px -5px 10px #454545;
+    --inset-box-shadow: inset 2px 2px 5px #252525, inset -2px -2px 5px #454545;
+
+    --toggle-btn-bg: var(--key-bg);
+    --toggle-btn-text: var(--text-color);
+    --toggle-btn-border: #526c7a;
+
+    --scrollbar-track-bg: var(--key-bg);
+    --scrollbar-thumb-bg: #7f8c8d;
+    --scrollbar-thumb-hover-bg: #95a5a6;
+    
+    --history-item-border: #4a6572;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column; /* Allow calculator and history to stack if history is outside */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle-button {
+    background-color: var(--toggle-btn-bg);
+    color: var(--toggle-btn-text);
+    border: 1px solid var(--toggle-btn-border);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8em;
+    margin-bottom: 15px; /* Space between toggle and display */
+    align-self: flex-end; /* Position to the right, above display */
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.theme-toggle-button:hover {
+    box-shadow: var(--inset-box-shadow);
+}
+
+.calculator {
+    width: 100%;
+    max-width: 360px;
+    background-color: var(--calculator-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    display: flex; /* Added to manage theme button position */
+    flex-direction: column; /* Stack theme button, display, keys, history panel */
+}
+
+.calculator-display {
+    background-color: var(--display-bg);
+    color: var(--display-text-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    box-shadow: var(--inset-box-shadow);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.display-history {
+    font-size: 0.8em;
+    color: var(--history-text-color); /* Use variable */
+    min-height: 1.2em;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.display-input {
+    font-size: 2.5em;
+    font-weight: 500;
+    min-height: 1.5em; /* Reserve space */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.key {
+    background-color: var(--key-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--text-color); /* Use variable */
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s ease-out;
+}
+
+.key:hover {
+    background-color: var(--key-bg-hover);
+}
+
+.key:active {
+    box-shadow: var(--inset-box-shadow);
+    transform: scale(0.97);
+}
+
+.key-operator {
+    background-color: var(--key-operator-bg);
+    color: white; /* Keeping white for contrast on colored operator keys */
+}
+
+.key-operator:hover {
+    background-color: var(--key-operator-bg-hover);
+}
+
+.key-ac, .key-del, .key-sign { /* Style for AC, DEL, +/- */
+    background-color: var(--key-special-bg);
+}
+
+.key-ac:hover, .key-del:hover, .key-sign:hover {
+    background-color: var(--key-special-bg-hover);
+}
+
+.key-equals {
+    grid-column: span 2; /* Make equals button wider */
+    background-color: var(--key-operator-bg); /* Or a distinct color */
+    color: white;
+}
+
+.key-equals:hover {
+    background-color: var(--key-operator-bg-hover);
+}
+
+.key-zero {
+    /* grid-column: span 2; /* If we want a wider zero key, but current layout is 4-wide */
+}
+
+/* Styles for Calculation History Log Panel */
+.calculator-history-log-panel {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: var(--display-bg); /* Use variable */
+    border-radius: var(--border-radius);
+    box-shadow: var(--inset-box-shadow);
+    max-height: 150px;
+    overflow-y: auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9em;
+}
+
+.calculator-history-log-panel h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: var(--text-color); /* Use variable */
+    text-align: center;
+}
+
+#historyLogList {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    color: var(--display-text-color); /* Use variable */
+}
+
+#historyLogList li {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--history-item-border); /* Use variable */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#historyLogList li:last-child {
+    border-bottom: none;
+}
+
+/* Hide scrollbar for a cleaner look if desired, but retain functionality */
+.calculator-history-log-panel::-webkit-scrollbar {
+    width: 8px;
+}
+.calculator-history-log-panel::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg); /* Use variable */
+    border-radius: var(--border-radius);
+}
+.calculator-history-log-panel::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg); /* Use variable */
+    border-radius: var(--border-radius);
+}
+.calculator-history-log-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-bg); /* Use variable */
+}
