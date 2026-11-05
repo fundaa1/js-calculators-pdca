@@ -20,19 +20,22 @@ Open [the tip calculator](tip-calculator-v1/index.html) directly in a browser. I
 - Codex owned source selection, cloning, implementation, documentation and verification. No work was delegated to another agent or person.
 - The human commissioner owns acceptance. The review inputs are the browser preview, the contracts and the walkthrough. Record acceptance or return failing cases with actual results.
 - A blank custom field restores the last selected preset, initially 15%. Custom 0% is valid. A preset click clears the custom field. The active preset exposes its state through `aria-pressed`.
-- The bill uses nonnegative dollars and cents. The custom rate uses nonnegative percentage points with up to one decimal place. The party size must be a positive whole number. Invalid values stay visible for correction and replace calculated amounts with dashes.
+- The bill uses a nonnegative amount with up to two decimal places. The custom rate uses nonnegative percentage points with up to one decimal place. The party size must be a positive whole number. Invalid values stay visible for correction and replace calculated amounts with dashes.
 - Tip, total and equal share are displayed to two decimal places. The displayed share is rounded independently, so multiplying it by the party size can differ from the total by a cent or more. Theme storage is optional and local to the browser.
+
+The calculator starts in ZAR. Selecting USD, EUR or GBP changes the display currency while preserving the numeric amounts. Live conversion is a future update.
 
 ## Commissioner walkthrough
 
 | Action | Expected |
 | --- | --- |
-| Enter bill 100 and people 2 | Tip $15.00, total $115.00, share $57.50 |
-| Select 18%, enter custom 10 | Tip $10.00, total $110.00, share $55.00 |
-| Clear custom | 18% selected, tip $18.00, total $118.00, share $59.00 |
-| Enter custom 0, then click 20% | Tip $0.00, then custom clears and tip becomes $20.00 |
-| Set people to 1.5, then back to 2 | Validation message and dashes, then share $60.00 |
+| Enter bill 100 and people 2 | Tip R15.00, total R115.00, share R57.50 |
+| Select 18%, enter custom 10 | Tip R10.00, total R110.00, share R55.00 |
+| Clear custom | 18% selected, tip R18.00, total R118.00, share R59.00 |
+| Enter custom 0, then click 20% | Tip R0.00, then custom clears and tip becomes R20.00 |
+| Set people to 1.5, then back to 2 | Validation message and dashes, then share R60.00 |
 | Toggle the theme | Page changes theme and the button label updates |
+| Switch from ZAR to EUR and back | The result symbols change, the bill stays 100, and the share stays numerically 60.00. |
 
 ## Execution record
 

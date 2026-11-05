@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const currency = document.getElementById('currency');
     const bill = document.getElementById('billAmount');
     const customTip = document.getElementById('customTipPercentage');
     const people = document.getElementById('numberOfPeople');
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const invalid = [bill, customTip, people].find(input => !input.validity.valid);
         let values = ['—', '—', '—'];
         if (invalid) {
-            message.textContent = invalid === bill ? 'Enter a nonnegative bill in dollars and cents.'
+            message.textContent = invalid === bill ? 'Enter a nonnegative bill with up to two decimal places.'
                 : invalid === customTip ? 'Enter a nonnegative tip with up to one decimal place.'
                 : 'Enter a whole number of people, at least 1.';
         } else if (bill.value === '') {
@@ -30,7 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const tip = bill.valueAsNumber * rate;
             const total = bill.valueAsNumber + tip;
             if (Number.isFinite(total)) {
-                values = [tip, total, total / people.valueAsNumber].map(value => '$' + value.toFixed(2));
+                const formatter = new Intl.NumberFormat('en-ZA', {
+                    style: 'currency',
+                    currency: currency.value
+                });
+                values = [tip, total, total / people.valueAsNumber].map(formatter.format);
                 message.textContent = '';
             } else {
                 message.textContent = 'Use a smaller bill or tip.';
@@ -40,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     [bill, customTip, people].forEach(input => input.addEventListener('input', render));
+    currency.addEventListener('change', render);
     presets.forEach(preset => preset.addEventListener('click', () => {
         selectedPreset = preset;
         customTip.value = '';
