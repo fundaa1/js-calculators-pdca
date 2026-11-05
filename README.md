@@ -25,6 +25,8 @@ Open [the tip calculator](tip-calculator-v1/index.html) directly in a browser. I
 
 The calculator starts in ZAR. Selecting USD, EUR or GBP changes the display currency while preserving the numeric amounts. Live conversion is a future update.
 
+Workshop status, maintenance and agent handoff: [WORKSHOP-HANDOFF.md](WORKSHOP-HANDOFF.md).
+
 ## Commissioner walkthrough
 
 | Action | Expected |
