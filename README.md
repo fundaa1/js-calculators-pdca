@@ -33,3 +33,10 @@ Open [the tip calculator](tip-calculator-v1/index.html) directly in a browser. I
 | Enter custom 0, then click 20% | Tip $0.00, then custom clears and tip becomes $20.00 |
 | Set people to 1.5, then back to 2 | Validation message and dashes, then share $60.00 |
 | Toggle the theme | Page changes theme and the button label updates |
+
+## Execution record
+
+- Delivery commit: `bf73726`. The clone retains upstream history and publishes to the separate public GitHub repository.
+- Passed: JavaScript syntax check and Git whitespace check.
+- Passed: Node smoke check using simulated browser events for default tip, custom override, preset restoration, zero tip, preset click, fractional party rejection, and pressed state.
+- Pending: commissioner walkthrough in a real browser, including theme behavior, and acceptance.
